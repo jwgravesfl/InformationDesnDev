@@ -12,6 +12,7 @@ import MuiToolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import styled from 'styled-components';
+import { Responsive, Segment, Sticky } from 'semantic-ui-react';
 
 import auth from '../../auth';
 import history from '../../history';
@@ -57,37 +58,50 @@ class Toolbar extends React.Component<{}, {}> {
 
   render() {
     return (
-      <AppBar color="default" position="static">
-        <MuiToolbar>
-          <Title type="title" color="inherit" onClick={goHome}>
-            My App
-          </Title>
-          {this.props.user && (
-            <React.Fragment>
-              <Button color="inherit" onClick={this.goToAccount}>
-                {this.props.user.displayName}
-              </Button>
-              <Button color="inherit" onClick={auth.signOut}>
-                Log Out
-              </Button>
-            </React.Fragment>
-          )}
-          {this.props.user === null && (
-            <React.Fragment>
-              <Button color="inherit" href="/about" onClick={Link.handleClick}>
-                About Us
-              </Button>
-              <Button color="inherit" onClick={auth.showLoginDialog}>
-                Sign In
-              </Button>
-            </React.Fragment>
-          )}
-        </MuiToolbar>
-        <LoginDialog
-          open={this.state.loginDialogOpen}
-          onClose={this.hideLogin}
-        />
-      </AppBar>
+      <Segment.Group>
+        <Responsive as={Segment} minWidth={768}>
+          <Sticky>
+            <AppBar color="default" position="static">
+              <MuiToolbar>
+                <Title type="title" color="inherit" onClick={goHome}>
+                  My App
+                </Title>
+                {this.props.user && (
+                  <React.Fragment>
+                    <Button color="inherit" onClick={this.goToAccount}>
+                      {this.props.user.displayName}
+                    </Button>
+                    <Button color="inherit" onClick={auth.signOut}>
+                      Log Out
+                    </Button>
+                  </React.Fragment>
+                )}
+                {this.props.user === null && (
+                  <React.Fragment>
+                    <Button
+                      color="inherit"
+                      href="/about"
+                      onClick={Link.handleClick}
+                    >
+                      About Us
+                    </Button>
+                    <Button color="inherit" onClick={auth.showLoginDialog}>
+                      Sign In
+                    </Button>
+                  </React.Fragment>
+                )}
+              </MuiToolbar>
+              <LoginDialog
+                open={this.state.loginDialogOpen}
+                onClose={this.hideLogin}
+              />
+            </AppBar>
+          </Sticky>
+        </Responsive>
+        <Responsive as={Segment} maxWidth={768}>
+          Full Screen
+        </Responsive>
+      </Segment.Group>
     );
   }
 }

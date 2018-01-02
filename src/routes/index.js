@@ -39,6 +39,14 @@ const routes = [
     }),
   },
   {
+    path: '/contact',
+    components: () => [import(/* webpackChunkName: 'Contact' */ './Contact')],
+    render: ({ user, components: [Contact] }) => ({
+      title: 'Contact Us',
+      body: <Contact user={user} />,
+    }),
+  },
+  {
     path: '/privacy',
     components: () => [import(/* webpackChunkName: 'privacy' */ './Privacy')],
     render: ({ user, components: [Privacy] }) => ({

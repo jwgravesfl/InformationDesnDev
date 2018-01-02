@@ -71,6 +71,15 @@ const routes = [
     }),
   },
   {
+    path: '/contact',
+    query: graphql`query routerContactQuery { me { ...App_me } }`, // prettier-ignore
+    components: () => [import(/* webpackChunkName: 'contact' */ './Contact')],
+    render: ([Contact]) => ({
+      title: 'Contact Us',
+      body: <Contact />,
+    }),
+  },
+  {
     path: '/tasks/:status(pending|completed)?',
     components: () => [import(/* webpackChunkName: 'home' */ './Home')],
     render: ([Home]) => ({

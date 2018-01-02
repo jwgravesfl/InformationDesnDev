@@ -10,9 +10,10 @@ import React from 'react';
 import styled from 'styled-components';
 import Card from 'material-ui/Card';
 import Typography from 'material-ui/Typography';
+import HomeName from './HomeName';
 
 const Container = styled.div`
-  max-width: 600px;
+  max-width: Auto;
   box-sizing: border-box;
   margin: 0 auto;
 `;
@@ -26,19 +27,7 @@ class Home extends React.Component<{}> {
   render() {
     return (
       <Container>
-        <Content>
-          <Typography type="headline" gutterBottom>
-            <strong>React Starter Kit</strong> for Firebase and GraphQL
-          </Typography>
-          <Typography type="body1" paragraph>
-            This is a boilerplate project for creating React applications.
-          </Typography>
-          <Typography type="body1" paragraph>
-            <a href="https://github.com/kriasoft/react-firebase-starter">
-              https://github.com/kriasoft/react-firebase-starter
-            </a>
-          </Typography>
-        </Content>
+        <HomeName />
       </Container>
     );
   }
